@@ -1,0 +1,14 @@
+.selected {
+    background: lightgrey;
+}
+
+.recipeBox{
+    margin: 5px;
+    list-style-type: none;
+    padding: 5px;
+    padding-bottom: 10px;
+}
+
+.noBullets{
+    list-style-type: none;
+}

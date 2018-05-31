@@ -1,0 +1,33 @@
+<!-- from example 2 on bottleapp -->
+ <!--<h1> My Recipes </h1>
+ <table>
+   <tr *ngFor="let recipe of recipeArray">
+     <td>{{recipe.ingredients}}</td>
+     <td>{{recipe.instructions}}</td>
+     <td>{{recipe.estTime}}</td>
+    </tr>
+ </table>
+<label>ingredients</label><input type="text" [(ngModel)]="formBinding.ingredients"><br>
+ <label>instructions</label><input type="number" [(ngModel)]="formBinding.instructions">
+ <label>estTime</label><input type="number" [(ngModel)]="formBinding.estTime">
+ <input type="button" value="" (click)="addRecipe()" value="Add recipe">-->
+
+ <!-- TODO delete button, edit button that opens create/edit ui window, current addRecipe is just text to fill then add-->
+ <h1> Select Recipes </h1>
+ <ul>
+  <li *ngFor="let recipe of recipeArray" (click)="select(recipe)" class="{{recipe == selectedRecipe?'selected':'' }} recipeBox" style="border: 1px solid black">
+    <ul>
+      <h2>Ingredients <i class="fa fa-lemon-o" aria-hidden="true"></i></h2>
+      <li *ngFor="let currentIngredient of recipe.ingredients" class="noBullets">
+          {{currentIngredient.name}}
+      </li>
+     <h2>Instructions <i class="fa fa-list-ol" aria-hidden="true"></i></h2> 
+      <li *ngFor = "let currentInstruction of recipe.instructions " class="noBullets">
+          {{currentInstruction}}
+      </li>
+      <h2>Estimated Time <i class="fa fa-clock-o" aria-hidden="true"></i></h2>
+      <li class="noBullets">
+          {{recipe.estTime}}
+      </li>
+    </ul>
+  </li>

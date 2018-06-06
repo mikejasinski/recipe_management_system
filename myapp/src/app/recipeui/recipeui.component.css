@@ -1,5 +1,30 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: lightpink;
+    padding: 10px;
+}
+
+.form-container {
+    background-color: lightgreen;
+    border: 1px;
+    border-style: solid;
+    padding: 15px;
+}
+
+.form-group {
+    background-color: lightcyan;
+    border: 1px;
+    border-style: solid;
+    padding: 10px;
+}
+
+.form-control {
+    padding: 1px; /* to tinker with later */
+}
+
 .selected {
-    background: lightgrey;
+    background: lightblue;
 }
 
 .recipeBox{
@@ -7,6 +32,9 @@
     list-style-type: none;
     padding: 5px;
     padding-bottom: 10px;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
 }
 
 .noBullets{

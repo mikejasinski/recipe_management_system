@@ -11,28 +11,63 @@ import {ListBox} from '../recipe_management_system/listbox.class';
 })
 export class RecipeuiComponent implements OnInit {
 
-  // declaring made recipes to display
-  OJ = new Recipe([new Item('Orange', 2)], ['Squeeze', 'Juice'], 10);
-  fruitSalad = new Recipe([new Item('Apple', 2), new Item('Pineapple', 1), new Item('Orange', 2)], ['Chop', 'Mix'], 10);
-  chocBanana = new Recipe([new Item('Banana', 2), new Item('Chocolate', 1)], ['Chop', 'Mix'], 5);
-
-  recipeArray: Recipe[] = [this.OJ, this.fruitSalad, this.chocBanana];
-  formBinding: Recipe = new Recipe([], [], 0);
-
-  selectedRecipe: Recipe = null;
+  // declarations
+  recipeArray: Recipe[];
+  selectedRecipe = new Recipe('', [], [], 0);
+  newIngredient = new Item('', 0);
+  newInstruction = '';
+  newEstTime = 0;
+  newRecipe = new Recipe('', [], [], 0);
 
   constructor() { }
 
   ngOnInit() {
+  this.recipeArray = [
+    new Recipe('Orange Juice', [new Item('Orange', 2)], ['Squeeze', 'Juice'], 10),
+    new Recipe('Fruit Salad', [new Item('Apple', 2), new Item('Pineapple', 1), new Item('Orange', 2)], ['Chop', 'Mix'], 10),
+    new Recipe('Chocolate Banana Pudding', [new Item('Banana', 2), new Item('Chocolate', 1)], ['Chop', 'Mix'], 5)
+  ];
   }
 
-  // taken from two-way binding example
+  clickedRecipe(e) {
+    this.selectedRecipe = new Recipe(e.rName, e.ingredients, e.instructions, e.estTime);
+    this.selectedRecipe = e;
+  }
+
   addRecipe() {
-      this.recipeArray.push(new Recipe(this.formBinding.ingredients, this.formBinding.instructions, this.formBinding.estTime));
+    const promptName = prompt('Name of recipe: ', '');
+    this.newRecipe.rName = promptName;
+    this.recipeArray.push(this.newRecipe);
   }
 
-  // selecting recipe
-  select(recipe) {
-    this.selectedRecipe = recipe;
+  addIngredient(e) {
+    this.selectedRecipe.addItem(this.newIngredient);
+    this.newIngredient = new Item('', 0);
+  }
+
+  addInstruction(e) { // doesnt do anything
+    this.selectedRecipe.addInstruction(this.newInstruction);
+    this.newInstruction = '';
+  }
+
+  addEstTime(e) { // takes whatever is in the declared newEstTime, doesnt work properly
+    this.selectedRecipe.addEstTime(this.newEstTime);
+    this.newEstTime = 0;
+  }
+
+  removeRecipe(recipe) { // removes last recipe in recipeArray, need to change to make it only selected
+    this.recipeArray.splice(this.recipeArray.indexOf(recipe), 1);
+  }
+
+  removeIngredient(e) {
+    this.selectedRecipe.removeItem(this.newIngredient);
+  }
+
+  removeInstruction(e) {
+    this.selectedRecipe.removeInstruction(this.newInstruction);
+  }
+
+  removeEstTime(e) {
+    this.selectedRecipe.removeEstTime(this.newEstTime);
   }
 }

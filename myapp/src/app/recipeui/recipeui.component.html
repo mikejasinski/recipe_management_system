@@ -1,33 +1,70 @@
-<!-- from example 2 on bottleapp -->
- <!--<h1> My Recipes </h1>
- <table>
-   <tr *ngFor="let recipe of recipeArray">
-     <td>{{recipe.ingredients}}</td>
-     <td>{{recipe.instructions}}</td>
-     <td>{{recipe.estTime}}</td>
-    </tr>
- </table>
-<label>ingredients</label><input type="text" [(ngModel)]="formBinding.ingredients"><br>
- <label>instructions</label><input type="number" [(ngModel)]="formBinding.instructions">
- <label>estTime</label><input type="number" [(ngModel)]="formBinding.estTime">
- <input type="button" value="" (click)="addRecipe()" value="Add recipe">-->
-
- <!-- TODO delete button, edit button that opens create/edit ui window, current addRecipe is just text to fill then add-->
- <h1> Select Recipes </h1>
- <ul>
-  <li *ngFor="let recipe of recipeArray" (click)="select(recipe)" class="{{recipe == selectedRecipe?'selected':'' }} recipeBox" style="border: 1px solid black">
+<!-- TODO delete button, edit button that opens create/edit ui window -->
+  <h2> Select a Recipe: </h2>
     <ul>
-      <h2>Ingredients <i class="fa fa-lemon-o" aria-hidden="true"></i></h2>
-      <li *ngFor="let currentIngredient of recipe.ingredients" class="noBullets">
-          {{currentIngredient.name}}
-      </li>
-     <h2>Instructions <i class="fa fa-list-ol" aria-hidden="true"></i></h2> 
-      <li *ngFor = "let currentInstruction of recipe.instructions " class="noBullets">
-          {{currentInstruction}}
-      </li>
-      <h2>Estimated Time <i class="fa fa-clock-o" aria-hidden="true"></i></h2>
-      <li class="noBullets">
-          {{recipe.estTime}}
+      <li *ngFor="let recipe of recipeArray" (click)="clickedRecipe(recipe)" class="{{recipe == selectedRecipe?'selected':'' }} recipeBox">
+        <ul>
+          <h2>Recipe Name <i class='fa fa-bars' aria-hidden="true"></i></h2>
+          <li class="noBullets">
+              {{recipe.rName}}
+          </li>
+          <h2>Ingredients <i class="fa fa-lemon-o" aria-hidden="true"></i></h2>
+          <li *ngFor="let currentIngredient of recipe.ingredients" class="noBullets">
+              {{currentIngredient.quantity}} x 
+              {{currentIngredient.name}}
+          </li>
+          <h2>Instructions <i class="fa fa-list-ol" aria-hidden="true"></i></h2> 
+          <li *ngFor = "let currentInstruction of recipe.instructions " class="noBullets">
+              {{currentInstruction}}
+          </li>
+          <h2>Estimated Time <i class="fa fa-clock-o" aria-hidden="true"></i></h2>
+          <li class="noBullets">
+              {{recipe.estTime}}
+          </li>
+        </ul>
       </li>
     </ul>
-  </li>
+
+    <!-- recipe button container-->
+    <div class="grid-container">
+        <div class="grid-item"><button type="button" id="addRecipeButton" (click)="addRecipe()">Add Recipe</button></div>
+        <div class="grid-item"><button type="button" id="remRecipeButton" (click)="removeRecipe()">Remove Recipe</button></div>
+      </div>
+
+      <!-- forms for buttons, need to implement ngIf to toggle, need to implement remove buttons  -->
+      <form class="form-container">
+        <h3>Add an Ingredient: </h3>
+        <div class="form-group">
+          <label>Ingredient Name </label>
+          <input type="text" [(ngModel)]="newIngredient.name" class="form-control" name="ingredientName" id="ingredientNameInput">
+        </div>
+
+        <div class="form-group">
+          <label>Ingredient Quantity </label>
+          <input type="number" [(ngModel)]="newIngredient.quantity" class="form-control" name="quantity" id="ingredientQuantityInput">
+        </div>
+
+        <button [disabled]="selectedRecipe.rName == '' ||  newIngredient.name  == '' " (click)="addIngredient($event)" id="addIngredientButton"> Add Ingredient </button>
+        <button (click)="removeIngredient($event)" id="remIngredientButton">Remove Ingredient</button>
+      </form>
+
+      <form class="form-container">
+        <h3>Add an Instruction: </h3>
+        <div class="form-group">
+          <label>Input Instruction </label>
+          <input type="text" [(ngModel)]="newIngredient.instructions" class="form-control" name="instruction" id="instructionInput">
+        </div>
+
+        <button [disabled]="selectedRecipe.rName == '' " (click)="addInstruction($event)" id="addInstructionButton"> Add Instruction </button>
+        <button (click)="removeInstruction($event)" id="remInstructionButton">Remove Instruction</button>
+      </form>
+
+      <form class="form-container">
+        <h3>Add the estimated time to complete: </h3>
+        <div class="form-group">
+          <label>Estimated Time </label>
+          <input type="number" [(ngModel)]="newIngredient.estTime" class="form-control" name="estTime" id="estTimeInput">
+        </div>
+
+        <button [disabled]="selectedRecipe.rName == '' " (click)="addEstTime($event)" id="addEstTimeButton"> Add Estimated Time </button>
+        <button (click)="removeEstTime($event)" id="remEstTimeButton">Remove Estimated Time</button>
+      </form>

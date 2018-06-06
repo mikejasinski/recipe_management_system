@@ -5,7 +5,7 @@ import {ListBox} from './listbox.class';
 
 // Jasmine
 describe('Testing variables', function () {
-    const newRecipe = new Recipe([], [], 0);
+    const newRecipe = new Recipe('', [], [], 0);
 
     const item1 = new Item('Orange', 6);
     const item2 = new Item('Egg', 12);
@@ -17,7 +17,7 @@ describe('Testing variables', function () {
 });
 
 it('addItem test', function () {
-    const newRecipe = new Recipe([], [], 0);
+    const newRecipe = new Recipe('', [], [], 0);
     const item4 = new Item('Apple', 3);
     const item5 = new Item('Pineapple', 1);
 
@@ -29,7 +29,7 @@ it('addItem test', function () {
 });
 
 it('addInstruction test', function () {
-    const newRecipe = new Recipe([], [], 0);
+    const newRecipe = new Recipe('', [], [], 0);
 
     newRecipe.addInstruction('This recipe requires an apple');
     newRecipe.addInstruction('This recipe requires a pineapple');
@@ -77,7 +77,7 @@ it('remove from fridge test', function () {
 });
 
 it('checkrecipe test', function () {
-    const newRecipe = new Recipe([], [], 0);
+    const newRecipe = new Recipe('', [], [], 0);
 
     // Started with an empty fridge
     const fridge = new Fridge();

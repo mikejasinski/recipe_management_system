@@ -8,12 +8,13 @@ export class Fridge {
     contents: any[] = [];
 
     // Variables for Recipe constructor
+    testNames: ' ';
     testItems: Item[] = [];
     testInstructions: string[] = [];
     testEstTime: number;
 
     // Test Recipe constructor for checkRecipe
-    testRecipe = new Recipe(this.testItems, this.testInstructions, this.testEstTime);
+    testRecipe = new Recipe(this.testNames, this.testItems, this.testInstructions, this.testEstTime);
 
     // Test lists to hold items, shopping list and fridge list
     sList: Item[] = [];

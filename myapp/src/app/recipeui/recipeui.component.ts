@@ -53,8 +53,8 @@ export class RecipeuiComponent implements OnInit {
     this.selectedRecipe.addEstTime(this.newEstTime);
   }
 
-  removeRecipe(recipe) { // removes last recipe in recipeArray, need to change to make it only selected
-    this.recipeArray.splice(this.recipeArray.indexOf(recipe), 1);
+  removeRecipe(recipe) { // removes last recipe in recipeArray, need to change to make it only selected, maybe use splice?
+    this.recipeArray.pop();
   }
 
   removeIngredient(e) {

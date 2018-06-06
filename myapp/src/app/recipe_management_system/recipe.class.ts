@@ -16,13 +16,13 @@ export class Recipe {
         this.estTime = newEstTime;
     }
 
-    // all removes just remove last element in array, need to find elements to remove
+    // all removes just remove last element in array, need to find elements to remove, pops not efficient, try using splice?
     removeItem(newIngredient: Item) {
-        this.ingredients.splice(this.ingredients.indexOf(newIngredient), 1);
+        this.ingredients.pop();
     }
 
     removeInstruction(newInstruction: string) {
-        this.instructions.splice(this.instructions.indexOf(newInstruction), 1);
+        this.instructions.pop();
     }
 
     removeEstTime(newEstTime: number) {

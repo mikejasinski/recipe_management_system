@@ -34,7 +34,7 @@ export class RecipeuiComponent implements OnInit {
     this.selectedRecipe = e;
   }
 
-  addRecipe() {
+  addRecipe() { // if adding multiple recipes, clicking one selects all
     const promptName = prompt('Name of recipe: ', '');
     this.newRecipe.rName = promptName;
     this.recipeArray.push(this.newRecipe);
@@ -45,14 +45,12 @@ export class RecipeuiComponent implements OnInit {
     this.newIngredient = new Item('', 0);
   }
 
-  addInstruction(e) { // doesnt do anything
+  addInstruction(e) {
     this.selectedRecipe.addInstruction(this.newInstruction);
-    this.newInstruction = '';
   }
 
-  addEstTime(e) { // takes whatever is in the declared newEstTime, doesnt work properly
+  addEstTime(e) {
     this.selectedRecipe.addEstTime(this.newEstTime);
-    this.newEstTime = 0;
   }
 
   removeRecipe(recipe) { // removes last recipe in recipeArray, need to change to make it only selected

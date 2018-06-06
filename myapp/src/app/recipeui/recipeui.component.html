@@ -51,7 +51,7 @@
         <h3>Add an Instruction: </h3>
         <div class="form-group">
           <label>Input Instruction </label>
-          <input type="text" [(ngModel)]="newIngredient.instructions" class="form-control" name="instruction" id="instructionInput">
+          <input type="text" [(ngModel)]="newInstruction" class="form-control" name="instruction" id="instructionInput">
         </div>
 
         <button [disabled]="selectedRecipe.rName == '' " (click)="addInstruction($event)" id="addInstructionButton"> Add Instruction </button>
@@ -62,7 +62,7 @@
         <h3>Add the estimated time to complete: </h3>
         <div class="form-group">
           <label>Estimated Time </label>
-          <input type="number" [(ngModel)]="newIngredient.estTime" class="form-control" name="estTime" id="estTimeInput">
+          <input type="number" [(ngModel)]="newEstTime" class="form-control" name="estTime" id="estTimeInput">
         </div>
 
         <button [disabled]="selectedRecipe.rName == '' " (click)="addEstTime($event)" id="addEstTimeButton"> Add Estimated Time </button>

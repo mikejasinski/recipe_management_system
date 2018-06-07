@@ -17,7 +17,6 @@ export class RecipeuiComponent implements OnInit {
   newIngredient = new Item('', 0);
   newInstruction = '';
   newEstTime = 0;
-  newRecipe = new Recipe('', [], [], 0);
 
   constructor() { }
 
@@ -36,8 +35,8 @@ export class RecipeuiComponent implements OnInit {
 
   addRecipe() { // if adding multiple recipes, clicking one selects all
     const promptName = prompt('Name of recipe: ', '');
-    this.newRecipe.rName = promptName;
-    this.recipeArray.push(this.newRecipe);
+    // this.selectedRecipe.rName = promptName;
+    this.recipeArray.push(new Recipe(promptName, [], [], 0));
   }
 
   addIngredient(e) {

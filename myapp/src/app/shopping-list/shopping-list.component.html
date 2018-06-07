@@ -1,0 +1,27 @@
+<hr>
+<h1> Shopping List Generator</h1>
+<h2>Available Recipes</h2>
+
+<button>Update List of Available Recipes</button>
+
+<ul>
+  <li *ngFor="let recipe of currentRecipeList" (click)="generateLists(recipe)"  >
+    {{recipe.rName}}
+  </li>
+</ul>
+
+
+<h2>Generated Shopping List</h2>
+<ul>
+  <li *ngFor="let ingredient of shoppingList">
+    {{ingredient.quantity}} x {{ingredient.name}}
+  </li>
+</ul>
+
+
+<h2>Generated Fridge</h2>
+<ul>
+  <li *ngFor="let ingredient of fridgeList">
+    {{ingredient.quantity}} x {{ingredient.name}}
+  </li>
+</ul>

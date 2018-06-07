@@ -1,0 +1,26 @@
+<hr>
+<h1> Fridge Viewer </h1>
+<h2>Contained Items</h2>
+<ul *ngFor="let ingredient of globalFridge.contents">
+  <h4>
+      {{ingredient.quantity}} x {{ingredient.name}}
+  </h4>
+</ul>
+
+<form class="form-container">
+    <h3>Add an Ingredient: </h3>
+    <div class="form-group">
+      <label>Ingredient Name </label>
+      <input type="text" [(ngModel)]="newIngredient.name" class="form-control" name="ingredientName" id="ingredientNameInput">
+    </div>
+
+    <div class="form-group">
+      <label>Ingredient Quantity </label>
+      <input type="number" [(ngModel)]="newIngredient.quantity" class="form-control" name="quantity" id="ingredientQuantityInput">
+    </div>
+
+    <button  (click)="addIngredient($event)" id="addIngredientButton"> Add Ingredient </button>
+    <button (click)="removeIngredient($event)" id="remIngredientButton">Remove Ingredient</button>
+  </form>
+
+  

@@ -2,7 +2,7 @@ import {Item} from './item.class';
 
 export class ListBox {
 
-    constructor(public shopList: Array<Item>, public fridgeList: Array<Item>) {}
+    constructor(public shopList: Item[], public fridgeList: Item[]) {}
 
     getShopList() {
         return this.shopList;
@@ -11,5 +11,4 @@ export class ListBox {
     getFridgeList() {
         return this.fridgeList;
     }
-
 }

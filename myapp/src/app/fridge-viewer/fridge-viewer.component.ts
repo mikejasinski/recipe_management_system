@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+
+// Classes used
 import { Item } from '../recipe_management_system/item.class';
 import { Recipe } from '../recipe_management_system/recipe.class';
 import { Fridge } from '../recipe_management_system/fridge.class';
 import { ListBox } from '../recipe_management_system/listbox.class';
+
+// Service
+import { RecipeManagmentSystemService } from '../recipe-managment-system.service';
 
 @Component({
   selector: 'app-fridge-viewer',
@@ -11,17 +16,18 @@ import { ListBox } from '../recipe_management_system/listbox.class';
 })
 export class FridgeViewerComponent implements OnInit {
 
+  // declarations
   globalFridge = new Fridge();
   selectedIngredient;
   newIngredient = new Item('', 0);
 
 
-  constructor() { 
-    this.globalFridge.contents = [new Item('Apple', 2), new Item('Pineapple', 1), new Item('Orange', 2)];
+  constructor(private recipeManagementSystemService: RecipeManagmentSystemService) {
+    this.globalFridge.contents = this.recipeManagementSystemService.getFridgeContents();
   }
 
   ngOnInit() {
-    this.globalFridge.contents = [new Item('Apple', 2), new Item('Pineapple', 1), new Item('Orange', 2)];
+    this.globalFridge.contents = this.recipeManagementSystemService.getFridgeContents();
   }
 
   addIngredient(e) {

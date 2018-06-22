@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {Recipe} from '../recipe_management_system/recipe.class';
-import {Item} from '../recipe_management_system/item.class';
-import {Fridge} from '../recipe_management_system/fridge.class';
-import {ListBox} from '../recipe_management_system/listbox.class';
+
+// Classes used
+import { Item } from '../recipe_management_system/item.class';
+import { Recipe } from '../recipe_management_system/recipe.class';
+import { Fridge } from '../recipe_management_system/fridge.class';
+import { ListBox } from '../recipe_management_system/listbox.class';
+
+// Service
+import { RecipeManagmentSystemService } from '../recipe-managment-system.service';
 
 @Component({
   selector: 'app-recipeui',
@@ -18,14 +23,10 @@ export class RecipeuiComponent implements OnInit {
   newInstruction = '';
   newEstTime = 0;
 
-  constructor() { }
+  constructor(private recipeManagementSystemService: RecipeManagmentSystemService) { }
 
   ngOnInit() {
-  this.recipeArray = [
-    new Recipe('Orange Juice', [new Item('Orange', 2)], ['Squeeze', 'Juice'], 10),
-    new Recipe('Fruit Salad', [new Item('Apple', 2), new Item('Pineapple', 1), new Item('Orange', 2)], ['Chop', 'Mix'], 10),
-    new Recipe('Chocolate Banana Pudding', [new Item('Banana', 2), new Item('Chocolate', 1)], ['Chop', 'Mix'], 5)
-  ];
+    this.recipeArray = this.recipeManagementSystemService.getRecipes();
   }
 
   clickedRecipe(e) {
@@ -33,9 +34,8 @@ export class RecipeuiComponent implements OnInit {
     this.selectedRecipe = e;
   }
 
-  addRecipe() { // if adding multiple recipes, clicking one selects all
+  addRecipe() {
     const promptName = prompt('Name of recipe: ', '');
-    // this.selectedRecipe.rName = promptName;
     this.recipeArray.push(new Recipe(promptName, [], [], 0));
   }
 
@@ -52,7 +52,7 @@ export class RecipeuiComponent implements OnInit {
     this.selectedRecipe.addEstTime(this.newEstTime);
   }
 
-  removeRecipe(recipe) { // removes last recipe in recipeArray, need to change to make it only selected, maybe use splice?
+  removeRecipe(recipe) {
     this.recipeArray.pop();
   }
 

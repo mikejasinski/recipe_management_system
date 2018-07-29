@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 // Classes used
 import { Item } from '../recipe_management_system/item.class';
@@ -8,6 +9,7 @@ import { ListBox } from '../recipe_management_system/listbox.class';
 
 // Service
 import { RecipeManagmentSystemService } from '../recipe-managment-system.service';
+import { NewRecipeManagmentSystemService } from '../new-recipe-management-system.service';
 
 
 @Component({
@@ -18,7 +20,8 @@ import { RecipeManagmentSystemService } from '../recipe-managment-system.service
 export class ShoppingListComponent implements OnInit {
 
   // declarations
-  currentRecipeList: Recipe[];
+  currentRecipeList: Recipe[]; // supposed to be Subscription;
+  recipeList: Recipe[];
   globalFridge: Fridge;
   shoppingList: Item[];
   fridgeList: Item[];
@@ -27,6 +30,11 @@ export class ShoppingListComponent implements OnInit {
 
   ngOnInit() {
     this.currentRecipeList = this.recipeManagementSystemService.getRecipes();
+    /*failed to implement new service
+      this.currentRecipeList = this.newRecipeManagementSystemService.getRecipeUpdateListener()
+      .subscribe((recipeList: Recipe[]) => {
+        this.recipeList = this.recipeList;
+      });*/
 
     this.globalFridge = new Fridge();
     this.globalFridge.contents = this.recipeManagementSystemService.getFridgeContents();
